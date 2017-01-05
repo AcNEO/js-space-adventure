@@ -1,5 +1,6 @@
-var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game-div', { preload: preload, create: create, update: update });
+'use strict';
 
+let player;
 let cursors;
 let score = 0;
 let scoreText;
@@ -9,6 +10,7 @@ let heart1;
 let heart2;
 let heart3;
 
+// Start game module
 let startGame = {
 
   preload: function() {
@@ -70,11 +72,11 @@ let startGame = {
         player.animations.stop();
     };
 
-  };
+  }
 
+};
 
-  function beginGamePlay () {
-    createShipFleet();
-    createCoinGroup();
-  };
+function beginGamePlay () {
+  createShipFleet();
+  createCoinGroup();
 };
