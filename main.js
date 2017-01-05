@@ -1,6 +1,8 @@
 var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game-div', { preload: preload, create: create, update: update });
 
 let cursors;
+let score = 0;
+let scoreText;
 let ships;
 let coins;
 let heart1;
@@ -21,6 +23,8 @@ function create() {
   game.physics.startSystem(Phaser.Physics.ARCADE);
 
   cursors = game.input.keyboard.createCursorKeys();
+
+  scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
 
   player = game.add.sprite(400, game.world.height - 10, 'js');
 
@@ -75,16 +79,16 @@ function createShipFleet() {
       shipFleet = ships.create(game.rnd.between(100, 770), 0, 'ship', game.rnd.between(0, 35));
 
       if (i >= 20) {
-        shipFleet.body.gravity.y = 150;
-        shipFleet.body.velocity.x = game.rnd.between(-100, 100);
-      } else if (i >= 50) {
         shipFleet.body.gravity.y = 200;
         shipFleet.body.velocity.x = game.rnd.between(-200, 200);
-      } else if (i >= 75) {
+      } else if (i >= 50) {
         shipFleet.body.gravity.y = 250;
         shipFleet.body.velocity.x = game.rnd.between(-250, 250);
+      } else if (i >= 75) {
+        shipFleet.body.gravity.y = 300;
+        shipFleet.body.velocity.x = game.rnd.between(-300, 300);
       } else {
-        shipFleet.body.gravity.y = 100;
+        shipFleet.body.gravity.y = 150;
       }
     }, i * 1000);
   };
@@ -95,7 +99,7 @@ function createCoinGroup() {
   coins = game.add.physicsGroup();
   let coinGroup;
 
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < 50; i++) {
     setTimeout(() => {
       coinGroup = coins.create(game.rnd.between(100, 770), 0, 'coin', game.rnd.between(0, 35));
 
@@ -120,6 +124,9 @@ function beginGamePlay () {
 function collectCoin(player, coin) {
   // Removes coin from screen
   coin.kill();
+  score += 100;
+  scoreText.text = `score: ${score}`;
+
 };
 
 function subtractLife(player, ship) {
