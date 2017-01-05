@@ -9,6 +9,8 @@ let coins;
 let heart1;
 let heart2;
 let heart3;
+let createShipTOID;
+let createCoinTOID;
 
 // Start game module
 let startGame = {
