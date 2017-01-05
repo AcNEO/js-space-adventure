@@ -3,6 +3,9 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game-div', { preload: preload
 let cursors;
 let ship;
 let coin;
+let heart1;
+let heart2;
+let heart3;
 
 function preload() {
   game.stage.backgroundColor = '#CCC';
@@ -10,6 +13,7 @@ function preload() {
   game.load.image('js', 'sprite/js.png');
   game.load.image('ship', 'sprite/ship.png');
   game.load.image('coin', 'sprite/coin.png');
+  game.load.image('heart', 'sprite/heart.png');
 };
 
 function create() {
@@ -20,6 +24,11 @@ function create() {
 
   player = game.add.sprite(400, game.world.height - 10, 'js');
 
+  // Create initial hearts at beginning of game
+  heart1 = game.add.sprite(700, 10, 'heart');
+  heart2 = game.add.sprite(725, 10, 'heart');
+  heart3 = game.add.sprite(750, 10, 'heart');
+
   //  We need to enable physics on the player
   game.physics.arcade.enable(player);
 
@@ -28,9 +37,8 @@ function create() {
   player.body.gravity.y = 300;
   player.body.collideWorldBounds = true;
 
-  // Create random ship and coin sprites
-  createShip();
-  createCoin();
+  // Start ship and coin rendering
+  beginGamePlay();
 
 };
 
@@ -65,7 +73,7 @@ function createShip() {
   game.physics.arcade.enable(ship);
 
   ship.body.bounce.y = 0.2;
-  ship.body.gravity.y = 200;
+  ship.body.gravity.y = 100;
   ship.body.collideWorldBounds = false;
 };
 
@@ -80,6 +88,16 @@ function createCoin() {
   coin.body.collideWorldBounds = false;
 };
 
+function beginGamePlay () {
+    // Create random ship and coin sprites
+  for (let i = 0; i < 20; i++) {
+    setTimeout(() => {
+      createShip();
+      createCoin();
+    }, i * 200);
+  };
+};
+
 function collectCoin(player, coin) {
   // Removes coin from screen
   coin.kill();
@@ -88,4 +106,14 @@ function collectCoin(player, coin) {
 function subtractLife(player, ship) {
   // Removes ship from screen
   ship.kill();
+  if (heart1 != null) {
+    heart1.kill();
+    heart1 = null;
+  } else if (heart2 != null) {
+    heart2.kill();
+    heart2 = null;
+  } else {
+    heart3.kill();
+    heart3 = null;
+  };
 };
