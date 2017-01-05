@@ -1,6 +1,7 @@
 var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game-div', { preload: preload, create: create, update: update });
 
 let cursors;
+let newSprite;
 
 function preload() {
   game.stage.backgroundColor = '#CCC';
@@ -16,26 +17,23 @@ function create() {
   cursors = game.input.keyboard.createCursorKeys();
 
   player = game.add.sprite(32, game.world.height - 150, 'js');
-  ship = game.add.sprite(82, game.world.height - 150, 'ship');
 
   //  We need to enable physics on the player
   game.physics.arcade.enable(player);
-  game.physics.arcade.enable(ship);
 
   //  Player physics properties. Give the little guy a slight bounce.
   player.body.bounce.y = 0.2;
   player.body.gravity.y = 300;
   player.body.collideWorldBounds = true;
 
-  ship.body.bounce.y = 0.2;
-  ship.body.gravity.y = 300;
-  ship.body.collideWorldBounds = true;
+  // Create random ship sprite
+  createRandomSprite('ship');
 
 };
 
 function update() {
   //  Collide the player and the stars with the platforms
-  var shipCollision = game.physics.arcade.collide(player, ship);
+  var shipCollision = game.physics.arcade.collide(player, newSprite);
 
   //  Reset the players velocity (movement)
   player.body.velocity.x = 0;
@@ -50,5 +48,18 @@ function update() {
       //  Stand still
       player.animations.stop();
   };
+
+};
+
+function createRandomSprite (spriteName) {
+  newSprite;
+  let randomXCoor = Math.floor(Math.random() * (750 - 50 + 1)) + 50;
+  newSprite = game.add.sprite(randomXCoor, -10, spriteName);
+
+  game.physics.arcade.enable(newSprite);
+
+  newSprite.body.bounce.y = 0.2;
+  newSprite.body.gravity.y = 300;
+  newSprite.body.collideWorldBounds = false;
 
 };
