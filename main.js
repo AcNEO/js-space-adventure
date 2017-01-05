@@ -1,8 +1,8 @@
 var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game-div', { preload: preload, create: create, update: update });
 
 let cursors;
-let ship;
-let coin;
+let ships;
+let coins;
 let heart1;
 let heart2;
 let heart3;
@@ -47,8 +47,8 @@ function update() {
   // var shipCollision = game.physics.arcade.collide(player, ship);
 
   // Create overlap functionality
-  game.physics.arcade.overlap(player, ship, subtractLife, null, this);
-  game.physics.arcade.overlap(player, coin, collectCoin, null, this);
+  game.physics.arcade.overlap(player, ships, subtractLife, null, this);
+  game.physics.arcade.overlap(player, coins, collectCoin, null, this);
 
   //  Reset the players velocity (movement)
   player.body.velocity.x = 0;
@@ -66,36 +66,55 @@ function update() {
 
 };
 
-function createShip() {
-  let randomXCoor = Math.floor(Math.random() * (750 - 50 + 1)) + 50;
-  ship = game.add.sprite(randomXCoor, - 10, 'ship');
+function createShipFleet() {
+  ships = game.add.physicsGroup();
+  let shipFleet;
 
-  game.physics.arcade.enable(ship);
+  for (let i = 0; i < 100; i++) {
+    setTimeout(() => {
+      shipFleet = ships.create(game.rnd.between(100, 770), 0, 'ship', game.rnd.between(0, 35));
 
-  ship.body.bounce.y = 0.2;
-  ship.body.gravity.y = 100;
-  ship.body.collideWorldBounds = false;
+      if (i >= 20) {
+        shipFleet.body.gravity.y = 150;
+        shipFleet.body.velocity.x = game.rnd.between(-100, 100);
+      } else if (i >= 50) {
+        shipFleet.body.gravity.y = 200;
+        shipFleet.body.velocity.x = game.rnd.between(-200, 200);
+      } else if (i >= 75) {
+        shipFleet.body.gravity.y = 250;
+        shipFleet.body.velocity.x = game.rnd.between(-250, 250);
+      } else {
+        shipFleet.body.gravity.y = 100;
+      }
+    }, i * 1000);
+  };
+
 };
 
-function createCoin() {
-  let randomXCoor = Math.floor(Math.random() * (750 - 50 + 1)) + 50;
-  coin = game.add.sprite(randomXCoor, - 10, 'coin');
+function createCoinGroup() {
+  coins = game.add.physicsGroup();
+  let coinGroup;
 
-  game.physics.arcade.enable(coin);
+  for (let i = 0; i < 100; i++) {
+    setTimeout(() => {
+      coinGroup = coins.create(game.rnd.between(100, 770), 0, 'coin', game.rnd.between(0, 35));
 
-  coin.body.bounce.y = 0.2;
-  coin.body.gravity.y = 200;
-  coin.body.collideWorldBounds = false;
+      if (i >= 40) {
+        coinGroup.body.gravity.y = 150;
+        coinGroup.body.velocity.x = game.rnd.between(-100, 100);
+      } else if (i >= 80) {
+        coinGroup.body.gravity.y = 200;
+        coinGroup.body.velocity.x = game.rnd.between(-200, 200);
+      } else {
+        coinGroup.body.gravity.y = 100;
+      }
+    }, i * 2000);
+  };
 };
 
 function beginGamePlay () {
-    // Create random ship and coin sprites
-  for (let i = 0; i < 20; i++) {
-    setTimeout(() => {
-      createShip();
-      createCoin();
-    }, i * 200);
-  };
+  createShipFleet();
+  createCoinGroup();
 };
 
 function collectCoin(player, coin) {
@@ -106,6 +125,7 @@ function collectCoin(player, coin) {
 function subtractLife(player, ship) {
   // Removes ship from screen
   ship.kill();
+  // Subtracts a heart according to how many are still on screen
   if (heart1 != null) {
     heart1.kill();
     heart1 = null;
