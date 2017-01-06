@@ -22,20 +22,32 @@ function determineHighScore() {
       .then((status) => {
         // Retrieve new scoreList
         getAllUserScores()
-        .then((scoreList) => {
-          gameOverText = `Game over, player score: ${score}\n
-          Press SPACE to play again.`;
-          // Output leaderboard text
-          displayText = game.add.text(225, 250, gameOverText, { font: "30px Arial", fill:'#000', align: "center" });
-        });
+        // Output leaderboard and gameover msg
+        .then((scoreList) => createLeaderBoard(scoreList));
       });
     } else {
-      gameOverText = `Sorry! Game over, player score: ${score}\n
-      Press SPACE to play again.`;
-
-      // Output leaderboard text
-      displayText = game.add.text(225, 250, gameOverText, { font: "30px Arial", fill:'#000', align: "center" });
+      // Output leaderboard and gameover msg
+      createLeaderBoard(scoreList);
     };
   });
+
+};
+
+
+function createLeaderBoard(leaderBoardList) {
+
+  gameOverText = `Game over, score: ${score}`;
+  // Output leaderboard text
+  game.add.text(200, 100, gameOverText,
+    { font: "40px Arial", fill:'#FFF', align: "center" });
+
+  let leaderBoardString= `\nLEADER BOARD:\n__________________\n`;
+
+  leaderBoardList.forEach((each, i) => {
+    leaderBoardString += `${i + 1}. ${each.name}: ${each.score}\n`
+  });
+
+  game.add.text(250, 150, leaderBoardString,
+    { font: "30px Arial", fill:'#FFF', align: "center" });
 
 };

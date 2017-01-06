@@ -15,16 +15,9 @@ let createCoinTOID;
 // Start game module
 let startGame = {
 
-  preload: function() {
+  create: function() {
     game.stage.backgroundColor = '#CCC';
 
-    game.load.image('js', 'sprite/js.png');
-    game.load.image('ship', 'sprite/ship.png');
-    game.load.image('coin', 'sprite/coin.png');
-    game.load.image('heart', 'sprite/heart.png');
-  },
-
-  create: function() {
     //  We're going to be using physics, so enable the Arcade Physics system
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
