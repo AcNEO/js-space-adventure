@@ -23,7 +23,7 @@ let startGame = {
 
     cursors = game.input.keyboard.createCursorKeys();
 
-    scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
+    scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '20px', fill: '#000' });
 
     player = game.add.sprite(400, game.world.height - 10, 'js');
 
@@ -31,6 +31,8 @@ let startGame = {
     heart1 = game.add.sprite(700, 10, 'heart');
     heart2 = game.add.sprite(725, 10, 'heart');
     heart3 = game.add.sprite(750, 10, 'heart');
+
+    createPineBackgroundSprites();
 
     //  We need to enable physics on the player
     game.physics.arcade.enable(player);

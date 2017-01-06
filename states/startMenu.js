@@ -7,6 +7,7 @@ let startMenu = {
     game.load.image('ship', 'sprite/ship.png');
     game.load.image('coin', 'sprite/coin.png');
     game.load.image('heart', 'sprite/heart.png');
+    game.load.image('pine', 'sprite/pine-tree.png');
     game.load.image('dark-bg', 'sprite/dark-bg.png');
   },
 

@@ -41,13 +41,13 @@ function createLeaderBoard(leaderBoardList) {
   game.add.text(200, 100, gameOverText,
     { font: "40px Arial", fill:'#FFF', align: "center" });
 
-  let leaderBoardString= `\nLEADER BOARD:\n__________________\n`;
+  let leaderBoardString= `\nLEADER BOARD:\n_______________\n`;
 
   leaderBoardList.forEach((each, i) => {
     leaderBoardString += `${i + 1}. ${each.name}: ${each.score}\n`
   });
 
   game.add.text(250, 150, leaderBoardString,
-    { font: "30px Arial", fill:'#FFF', align: "center" });
+    { font: "30px Arial", fill:'#FFF', align: "left" });
 
 };
