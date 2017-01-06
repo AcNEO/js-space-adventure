@@ -4,11 +4,7 @@ function subtractLife(player, ship) {
   // Removes ship from screen
   ship.kill();
   // Subtracts a heart according to how many are still on screen
-  if (heart1 === null && heart2 === null && heart3 === null) {
-    clearTimeout(createShipTOID);
-    clearTimeout(createCoinTOID);
-    game.state.start('credit-menu');
-  } else if (heart1 != null) {
+  if (heart1 != null) {
     heart1.kill();
     heart1 = null;
   } else if (heart2 != null) {
@@ -17,5 +13,8 @@ function subtractLife(player, ship) {
   } else {
     heart3.kill();
     heart3 = null;
+    clearTimeout(createShipTOID);
+    clearTimeout(createCoinTOID);
+    game.state.start('credit-menu');
   };
 };

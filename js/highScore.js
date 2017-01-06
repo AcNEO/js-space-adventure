@@ -47,7 +47,10 @@ function createLeaderBoard(leaderBoardList) {
     leaderBoardString += `${i + 1}. ${each.name}: ${each.score}\n`
   });
 
-  game.add.text(250, 150, leaderBoardString,
-    { font: "30px Arial", fill:'#FFF', align: "left" });
+  game.add.text(275, 150, leaderBoardString,
+    { font: "30px Arial", fill:'#0000ff', align: "left" });
+
+  game.add.text(225, 500, `Press Space to Play Again`,
+    { font: "30px Arial", fill:'#BBB', align: "center" });
 
 };
