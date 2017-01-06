@@ -44,7 +44,6 @@ let startGame = {
 
     //  Player physics properties. Give the little guy a slight bounce.
     player.body.bounce.y = 0.2;
-    // player.body.gravity.y = 300;
     player.body.collideWorldBounds = true;
 
     // Start ship and coin rendering
@@ -53,8 +52,6 @@ let startGame = {
   },
 
   update: function() {
-    //  Collide the player and the stars with the platforms
-    // var shipCollision = game.physics.arcade.collide(player, ship);
 
     // Create overlap functionality
     game.physics.arcade.overlap(player, ships, subtractLife, null, this);

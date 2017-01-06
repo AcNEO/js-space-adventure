@@ -7,9 +7,15 @@ function getAllUserScores() {
     })
     .then((scoreList) => {
       if (scoreList === null) {
-        resolve(true);
+        resolve([{name: 'dms', score: '0'}]);
       } else {
-        let sortedList = scoreList.sort(function (a, b) {
+        let sortedList = [];
+        // Sort through FB object and push each player score obj to and array
+        Object.keys(scoreList).forEach(each => {
+          sortedList.push(scoreList[each]);
+        });
+        // Sort the array of player score obj
+        sortedList = sortedList.sort(function (a, b) {
           return b.score - a.score;
         }).slice(0,5);
 
