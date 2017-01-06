@@ -36,7 +36,7 @@ function determineHighScore() {
 
 function createLeaderBoard(leaderBoardList) {
 
-  gameOverText = `Game over, score: ${score}`;
+  gameOverText = `Your score: ${score}`;
   // Output leaderboard text
   game.add.text(200, 100, gameOverText,
     { font: "40px Arial", fill:'#FFF', align: "center" });

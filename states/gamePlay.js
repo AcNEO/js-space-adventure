@@ -18,6 +18,9 @@ let startGame = {
   create: function() {
     game.stage.backgroundColor = '#CCC';
 
+    // Generate pine trees for game play
+    createPineBackgroundSprites();
+
     //  We're going to be using physics, so enable the Arcade Physics system
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
@@ -31,8 +34,6 @@ let startGame = {
     heart1 = game.add.sprite(700, 10, 'heart');
     heart2 = game.add.sprite(725, 10, 'heart');
     heart3 = game.add.sprite(750, 10, 'heart');
-
-    createPineBackgroundSprites();
 
     //  We need to enable physics on the player
     game.physics.arcade.enable(player);
