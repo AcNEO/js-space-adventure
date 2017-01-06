@@ -24,7 +24,6 @@ function determineShipOutputSpeed() {
 
 function outputShips() {
   shipCounter++;
-  console.log("shipCounter", shipCounter);
 
   shipFleet = ships.create(game.rnd.between(100, 770), 0, 'ship', game.rnd.between(0, 35));
 
