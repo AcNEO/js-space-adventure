@@ -44,12 +44,12 @@ let startGame = {
 
     //  Player physics properties. Give the little guy a slight bounce.
     player.body.bounce.y = 0.2;
-    player.body.gravity.y = 300;
+    // player.body.gravity.y = 300;
     player.body.collideWorldBounds = true;
 
     // Start ship and coin rendering
-    beginGamePlay();
-
+    createShipFleet();
+    createCoinGroup();
   },
 
   update: function() {
@@ -65,10 +65,10 @@ let startGame = {
 
     if (cursors.left.isDown) {
         //  Move to the left
-      player.body.velocity.x = -150;
+      player.body.velocity.x = -300;
     } else if (cursors.right.isDown) {
         //  Move to the right
-        player.body.velocity.x = 150;
+        player.body.velocity.x = 300;
     } else {
         //  Stand still
         player.animations.stop();
@@ -76,9 +76,4 @@ let startGame = {
 
   }
 
-};
-
-function beginGamePlay () {
-  createShipFleet();
-  createCoinGroup();
 };
