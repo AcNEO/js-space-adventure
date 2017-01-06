@@ -6,8 +6,13 @@ function getAllUserScores() {
       url: `https://js-space-adventure.firebaseio.com/scores.json`
     })
     .then((scoreList) => {
-      resolve(scoreList);
-    })
+      // Sort the scores array and resolve the 5 highest scores
+      let sortedList = list.sort(function (a, b) {
+        return b.score - a.score;
+      }).slice(0,5);
+
+      resolve(sortedList);
+    });
   });
 };
 
