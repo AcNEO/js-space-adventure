@@ -38,7 +38,7 @@ function createLeaderBoard(leaderBoardList) {
 
   gameOverText = `Your score: ${score}`;
   // Output leaderboard text
-  game.add.text(200, 100, gameOverText,
+  game.add.text(250, 100, gameOverText,
     { font: "40px Arial", fill:'#FFF', align: "center" });
 
   let leaderBoardString= `\nLEADER BOARD:\n_______________\n`;

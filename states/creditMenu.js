@@ -16,6 +16,7 @@ let creditMenu = {
 
   update: function() {
     if (game.spaceBar.isDown) {
+      // game.state.restart();
       game.state.start('start-game');
     };
   }

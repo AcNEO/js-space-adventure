@@ -9,7 +9,7 @@ function createShipFleet() {
 };
 
 function timeoutShips() {
-  createShipFleet = setTimeout(outputShips, determineShipOutputSpeed());
+  createShipTOID = setTimeout(outputShips, determineShipOutputSpeed());
 };
 
 function determineShipOutputSpeed() {
