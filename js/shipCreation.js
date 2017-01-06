@@ -14,11 +14,11 @@ function timeoutShips() {
 
 function determineShipOutputSpeed() {
   if (shipCounter >= 25) {
-    return game.rnd.between(500, 1000);
+    return game.rnd.between(250, 500);
   } else if (shipCounter >= 100) {
     return game.rnd.between(0, 100);
   } else {
-    return game.rnd.between(1000, 1500);
+    return game.rnd.between(500, 1000);
   }
 };
 

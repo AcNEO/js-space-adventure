@@ -13,6 +13,7 @@ function subtractLife(player, ship) {
   } else {
     heart3.kill();
     heart3 = null;
+    shipCounter = 0;
     clearTimeout(createShipTOID);
     clearTimeout(createCoinTOID);
     game.state.start('credit-menu');
