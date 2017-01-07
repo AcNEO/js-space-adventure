@@ -3,6 +3,6 @@ body {
 }
 
 canvas {
-  margin: auto;
+  margin: 5rem auto;
   border: solid .5rem white;
 }
