@@ -16,6 +16,11 @@ let creditMenu = {
 
   update: function() {
     if (game.spaceBar.isDown) {
+      // Reset score and counters
+      score = 0;
+      coinCounter = 0;
+      shipCounter = 0;
+
       game.state.start('start-menu');
     };
   }

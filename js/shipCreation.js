@@ -27,7 +27,7 @@ function outputShips() {
 
   shipFleet = ships.create(game.rnd.between(100, 770), 0, 'ship', game.rnd.between(0, 35));
 
-  if (shipCounter === 250) {
+  if (shipCounter === 300) {
     game.state.start('credit-menu');
   } else if (shipCounter >= 25) {
     shipFleet.body.velocity.y = 500;
@@ -47,6 +47,10 @@ function outputShips() {
     timeoutShips();
   } else if (shipCounter >= 200) {
     shipFleet.body.velocity.y = 2000;
+    shipFleet.body.velocity.x = game.rnd.between(-300, 300);
+    timeoutShips();
+  } else if (shipCounter >= 250) {
+    shipFleet.body.velocity.y = 3000;
     shipFleet.body.velocity.x = game.rnd.between(-300, 300);
     timeoutShips();
   } else {
