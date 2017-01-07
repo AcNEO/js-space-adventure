@@ -14,7 +14,7 @@ function determineHighScore() {
     if (scoreModule.getScore() > scoreList.slice(-1)[0].score) {
       // Create user object with name and score
       let userObj = {
-        name: prompt('What is your name?'),
+        name: prompt('Congrats, you made the leaderboard!\nPlease enter you name.'),
         score: scoreModule.getScore()
       };
       // Post score obj to FB
