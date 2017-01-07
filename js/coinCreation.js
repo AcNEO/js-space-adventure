@@ -9,7 +9,7 @@ function createCoinGroup() {
 };
 
 function timeoutCoins() {
-  createShipFleet = setTimeout(outputCoins, game.rnd.between(1000, 4000));
+  createCoinTOID = setTimeout(outputCoins, game.rnd.between(1000, 4000));
 };
 
 function outputCoins() {

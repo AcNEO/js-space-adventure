@@ -2,21 +2,26 @@
 
 let creditMenu = {
   create: function() {
-    game.stage.backgroundColor = '#CCC';
+    let boImg = game.add.sprite(0,0, 'dark-bg');
+    boImg.scale.setTo(2, 2);
 
-    let gameOverText = `Game over, player score: ${score}\n
-    Press SPACE to play again.`;
+    // Determines if player is made a position on the leader board
+    // Then display text accordingly
+    determineHighScore();
 
-    let text = game.add.text(225, 250, gameOverText, { font: "30px Arial", fill:'#000', align: "center" });
-    text.inputEnabled = true;
-
+    // Activate spacebar
     game.spaceBar = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
   },
 
   update: function() {
     if (game.spaceBar.isDown) {
-      game.state.start('start-game');
+      // Reset score and counters
+      scoreModule.resetScore();
+      coinCounter = 0;
+      shipCounter = 0;
+
+      game.state.start('start-menu');
     };
   }
 
