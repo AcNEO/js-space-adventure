@@ -15,7 +15,7 @@ let createCoinTOID;
 let startGame = {
 
   create: function() {
-    game.stage.backgroundColor = '#CCC';
+    game.stage.backgroundColor = '#DDD';
 
     // Generate pine trees for game play
     createPineBackgroundSprites();
